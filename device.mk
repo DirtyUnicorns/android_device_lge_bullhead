@@ -270,6 +270,10 @@ PRODUCT_PACKAGES += \
 DEVICE_PACKAGE_OVERLAYS := \
     device/lge/bullhead/overlay
 
+# Allow tethering without provisioning app
+PRODUCT_PROPERTY_OVERRIDES += \
+    net.tethering.noprovisioning=true
+
 # Enable AAC 5.1 output
 PRODUCT_PROPERTY_OVERRIDES += \
     media.aac_51_output_enabled=true
