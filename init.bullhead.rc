@@ -53,9 +53,6 @@ on property:sys.boot_completed=1
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
 
 on init
-    # Load persistent dm-verity state
-    verity_load_state
-
     # Set permissions for persist partition
     mkdir /persist 0771 system system
     mkdir /firmware 0771 system system
@@ -85,9 +82,6 @@ on early-boot
     write /sys/module/pil_msa/parameters/pbl_mba_boot_timeout_ms ${persist.sys.mba_boot_timeout}
     write /sys/module/pil_msa/parameters/modem_auth_timeout_ms ${persist.sys.modem_auth_timeout}
     write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}
-
-    # Update dm-verity state and set partition.*.verified properties
-    verity_update_state
 
 on boot
     # execute script to set initial CPU settings
