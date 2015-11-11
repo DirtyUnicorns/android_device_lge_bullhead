@@ -404,6 +404,11 @@ ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += \
     QXDMLogger
 
+# set default USB configuration
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp,adb \
+    ro.adb.secure=0
+
 PRODUCT_COPY_FILES += \
     device/lge/bullhead/init.bullhead.diag.rc.userdebug:root/init.bullhead.diag.rc \
     device/lge/bullhead/init.bullhead.misc.rc.userdebug:root/init.bullhead.misc.rc
