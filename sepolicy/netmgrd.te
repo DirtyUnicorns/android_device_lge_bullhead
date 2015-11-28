@@ -12,7 +12,7 @@ qmux_socket(netmgrd)
 allow netmgrd shell_exec:file rx_file_perms;
 
 # Starts as (root,radio) changes to (radio,radio)
-allow netmgrd self:capability { setuid setgid net_admin net_raw setpcap };
+allow netmgrd self:capability { setuid setgid net_admin net_raw setpcap dac_override };
 
 # Started by init
 init_daemon_domain(netmgrd)
