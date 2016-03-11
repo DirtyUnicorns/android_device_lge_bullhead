@@ -33,5 +33,5 @@ PRODUCT_RESTRICT_VENDOR_FILES := false
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME=bullhead \
-    BUILD_FINGERPRINT="google/bullhead/bullhead:6.0.1/MHC19J/2554798:user/release-keys" \
-    PRIVATE_BUILD_DESC="bullhead-user 6.0.1 MHC19J 2554798 release-keys"
+    BUILD_FINGERPRINT="google/bullhead/bullhead:6.0.1/MHC19J/2595691:user/release-keys" \
+    PRIVATE_BUILD_DESC="bullhead-user 6.0.1 MHC19J 2595691 release-keys"
