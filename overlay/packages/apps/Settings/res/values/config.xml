@@ -22,4 +22,7 @@
     <!-- Enable color temperature setting. -->
     <bool name="config_enableColorTemperature">true</bool>
 
+    <!-- Device only uses a set range of colors for LED so only allow a fixed array -->
+    <bool name="config_has_multi_color_led">false</bool>
+
 </resources>
