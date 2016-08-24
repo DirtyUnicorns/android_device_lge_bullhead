@@ -1,0 +1,12 @@
+[
+ {
+   "repository":  "DirtyUnicorns/android_kernel_lge_bullhead",
+   "target_path": "kernel/lge/bullhead",
+   "branch":      "n7x"
+ },
+ {
+   "repository":  "DirtyUnicorns/android_vendor_lge",
+   "target_path": "vendor/lge",
+   "branch":      "n7x"
+ }
+]
