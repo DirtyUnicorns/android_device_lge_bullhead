@@ -37,7 +37,7 @@ get-set-forall /sys/devices/soc.0/qcom,bcl.*/mode enable
 restorecon -R /sys/devices/system/cpu
 
 # Best effort limiting for first time boot if msm_performance module is absent
-write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 960000
+write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1248000
 
 # Limit A57 max freq from msm_perf module in case CPU 4 is offline
 write /sys/module/msm_performance/parameters/cpu_max_freq "4:960000 5:960000"
@@ -55,37 +55,38 @@ write /sys/module/lpm_levels/system/a53/a53-l2-retention/idle_enabled 0
 write /sys/module/lpm_levels/system/a57/a57-l2-retention/idle_enabled 0
 
 # configure governor settings for little cluster
-write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-restorecon -R /sys/devices/system/cpu # must restore after interactive
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load 1
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_migration_notif 1
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay 19000
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 99
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 19000
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 960000
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "65 460800:75 960000:80"
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 40000
-write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 80000
-write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
+write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor impulse
+restorecon -R /sys/devices/system/cpu # must restore after impulse
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/timer_slack 80000
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/timer_rate 20000
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/target_loads 90
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/min_sample_time 80000
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/hispeed_freq 1440000
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/go_hispeed_load 99
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/above_hispeed_delay 20000
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/align_windows 0
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/max_freq_hysteresis 0
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/powersave_bias 0
 
 # online CPU4
 write /sys/devices/system/cpu/cpu4/online 1
 
 # configure governor settings for big cluster
-write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor interactive
-restorecon -R /sys/devices/system/cpu # must restore after interactive
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_sched_load 1
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/use_migration_notif 1
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay 19000
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 99
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 19000
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 1248000
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 1
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "70 960000:80 1248000:85"
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
-write /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis 80000
-write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 633600
+write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor ironactive
+restorecon -R /sys/devices/system/cpu # must restore after ironactive
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/go_hispeed_load 90
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/above_hispeed_delay 0
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/timer_rate 20000
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/hispeed_freq 1440000
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/timer_slack -1
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/target_loads "74 768000:73 864000:64 960000:80 1248000:61 1344000:69 1440000:64 1536000:74 1632000:69 1689600:67 1824000:72"
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/min_sample_time 30000
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/boost 0
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/align_windows 0
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/use_migration_notif 1
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/use_sched_load 0
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/max_freq_hysteresis 20000
+write /sys/devices/system/cpu/cpu4/cpufreq/ironactive/boostpulse_duration 80000
 
 # restore A57's max
 copy /sys/devices/system/cpu/cpu4/cpufreq/cpuinfo_max_freq /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
@@ -97,7 +98,8 @@ write /sys/devices/system/cpu/cpu5/online 1
 write /sys/module/msm_performance/parameters/cpu_max_freq "4:4294967295 5:4294967295"
 
 # input boost configuration
-write /sys/module/cpu_boost/parameters/input_boost_freq "0:960000"
+write /sys/module/cpu_boost/parameters/input_boost_enabled 1
+write /sys/module/cpu_boost/parameters/input_boost_freq 0:600000 1:600000 2:600000 3:600000 4:0 5:0
 write /sys/module/cpu_boost/parameters/input_boost_ms 40
 
 # Setting B.L scheduler parameters
