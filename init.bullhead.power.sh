@@ -58,14 +58,14 @@ write /sys/module/lpm_levels/system/a57/a57-l2-retention/idle_enabled 0
 write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor impulse
 restorecon -R /sys/devices/system/cpu # must restore after impulse
 write /sys/devices/system/cpu/cpu0/cpufreq/impulse/timer_slack -1
-write /sys/devices/system/cpu/cpu0/cpufreq/impulse/timer_rate 50000
-write /sys/devices/system/cpu/cpu0/cpufreq/impulse/target_loads "80 302400:33 460800:25 600000:50 672000:65 787200:78 864000:85 960000:95 1248000:98 1440000:100"
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/timer_rate 40000
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/target_loads "80 302400:33 460800:25 600000:50 672000:65 787200:70 864000:85 960000:90 1248000:92 1440000:98"
 write /sys/devices/system/cpu/cpu0/cpufreq/impulse/min_sample_time 50000
 write /sys/devices/system/cpu/cpu0/cpufreq/impulse/hispeed_freq 960000
 write /sys/devices/system/cpu/cpu0/cpufreq/impulse/go_hispeed_load 85
-write /sys/devices/system/cpu/cpu0/cpufreq/impulse/above_hispeed_delay 10000
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/above_hispeed_delay 0
 write /sys/devices/system/cpu/cpu0/cpufreq/impulse/align_windows 0
-write /sys/devices/system/cpu/cpu0/cpufreq/impulse/max_freq_hysteresis 25000
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/max_freq_hysteresis 166667
 write /sys/devices/system/cpu/cpu0/cpufreq/impulse/powersave_bias 0
 
 # online CPU4
