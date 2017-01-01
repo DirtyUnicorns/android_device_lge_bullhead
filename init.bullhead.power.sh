@@ -59,7 +59,7 @@ write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor impulse
 restorecon -R /sys/devices/system/cpu # must restore after impulse
 write /sys/devices/system/cpu/cpu0/cpufreq/impulse/timer_slack -1
 write /sys/devices/system/cpu/cpu0/cpufreq/impulse/timer_rate 40000
-write /sys/devices/system/cpu/cpu0/cpufreq/impulse/target_loads "80 302400:33 460800:25 600000:50 672000:65 787200:70 864000:85 960000:90 1248000:92 1440000:98"
+write /sys/devices/system/cpu/cpu0/cpufreq/impulse/target_loads "80 384000:33 460800:25 600000:50 672000:65 787200:70 864000:85 960000:90 1248000:92 1440000:98"
 write /sys/devices/system/cpu/cpu0/cpufreq/impulse/min_sample_time 50000
 write /sys/devices/system/cpu/cpu0/cpufreq/impulse/hispeed_freq 960000
 write /sys/devices/system/cpu/cpu0/cpufreq/impulse/go_hispeed_load 85
@@ -99,7 +99,7 @@ write /sys/module/msm_performance/parameters/cpu_max_freq "4:4294967295 5:429496
 
 # input boost configuration
 write /sys/module/cpu_boost/parameters/input_boost_enabled 1
-write /sys/module/cpu_boost/parameters/input_boost_freq 0:600000 1:600000 2:600000 3:600000 4:0 5:0
+write /sys/module/cpu_boost/parameters/input_boost_freq "0:460800 1:460800 2:460800 3:460800 4:0 5:0"
 write /sys/module/cpu_boost/parameters/input_boost_ms 40
 
 # Setting B.L scheduler parameters
