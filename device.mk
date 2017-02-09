@@ -500,6 +500,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.wfd.enable=1﻿
 
+# Google Assistant
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opa.eligible_device=true
+
 $(call inherit-product-if-exists, hardware/qcom/msm8994/msm8992.mk)
 $(call inherit-product-if-exists, vendor/qcom/gpu/msm8994/msm8994-gpu-vendor.mk)
-
