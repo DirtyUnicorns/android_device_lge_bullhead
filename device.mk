@@ -496,10 +496,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.facelock.rec_timeout=3500 \
     ro.facelock.est_max_time=600
 
-# miracast props
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.debug.wfd.enable=1﻿
-
 # Google Assistant
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opa.eligible_device=true
