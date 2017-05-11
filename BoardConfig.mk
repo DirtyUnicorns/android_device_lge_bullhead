@@ -160,4 +160,7 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 TARGET_USE_DEVICE_AUDIO_EFFECTS_CONF := true
 TARGET_IGNORE_VENDOR_AUDIO_EFFECTS_CONF := true
 
+# Enable real time lockscreen charging current values
+BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
+
 -include vendor/lge/bullhead/BoardConfigVendor.mk
