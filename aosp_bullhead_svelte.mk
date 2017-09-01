@@ -26,8 +26,8 @@ $(call inherit-product, device/lge/bullhead/aosp_bullhead.mk)
 PRODUCT_NAME := aosp_bullhead_svelte
 PRODUCT_DEVICE := bullhead
 PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP svelte on BullHead
+PRODUCT_MODEL := AOSP svelte on Bullhead
 PRODUCT_MANUFACTURER := LGE
-PRODUCT_RESTRICT_VENDOR_FILES := true
+#PRODUCT_RESTRICT_VENDOR_FILES := true
 
 PRODUCT_PROPERTY_OVERRIDES += ro.config.low_ram=true

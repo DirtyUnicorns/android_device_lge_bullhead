@@ -61,8 +61,6 @@ on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/iostats 1
 
 on init
-    # Load persistent dm-verity state
-    verity_load_state
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -93,9 +91,6 @@ on early-boot
     write /sys/module/pil_msa/parameters/pbl_mba_boot_timeout_ms ${persist.sys.mba_boot_timeout}
     write /sys/module/pil_msa/parameters/modem_auth_timeout_ms ${persist.sys.modem_auth_timeout}
     write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}
-
-    # Update dm-verity state and set partition.*.verified properties
-    verity_update_state
 
     # Busy loop to wait for devices booted by devstart_sh just in case device not ready
     exec - root root system -- /system/bin/init.qcom.devwait.sh
@@ -179,9 +174,6 @@ on boot
     chown system system /sys/class/leds/green/on_off_ms
     chown system system /sys/class/leds/blue/on_off_ms
     chown system system /sys/class/leds/red/rgb_start
-
-    # Wifi firmware reload path
-    chown wifi wifi /sys/module/wlan/parameters/fwpath
 
     # Wifi firmware reload path
     chown wifi wifi /sys/module/wlan/parameters/fwpath
@@ -292,7 +284,7 @@ on property:wc_transport.start_hci=false
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/bin/qmuxd
     class main
-    user radio
+    user root
     group radio audio bluetooth wakelock gps
 
 service perfd /system/bin/perfd
